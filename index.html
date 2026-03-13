@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aera — License the Frequency Index™</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --s50:#f5f2ed;--s100:#ede8e0;--s200:#ddd6ca;--s300:#c8bfb0;--s400:#b0a696;
+  --s500:#968a7a;--s600:#7a6e60;--s700:#5c5248;--s800:#3a3430;--s900:#1e1b18;
+  --cream:#f8f4ee;--ww:#fdfcfa;
+  --tp:#2a2520;--ts:#6a6058;--tt:#9a9088;
+  --bd:rgba(120,110,96,0.15);--bds:rgba(120,110,96,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--s50);color:var(--tp);overflow-x:hidden}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;background:var(--s900);display:grid;grid-template-rows:auto 1fr auto;position:relative;overflow:hidden;color:var(--s100)}
+
+/* Pulsating rings — heartbeat */
+.pulse-rings{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;width:100%;height:100%}
+.pulse-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(200,190,170,0.18);animation:heartbeat 3.2s ease-in-out infinite}
+.pulse-ring:nth-child(1){width:300px;height:300px;animation-delay:0s}
+.pulse-ring:nth-child(2){width:520px;height:520px;animation-delay:.18s}
+.pulse-ring:nth-child(3){width:740px;height:740px;animation-delay:.36s}
+.pulse-ring:nth-child(4){width:960px;height:960px;animation-delay:.54s}
+.pulse-ring:nth-child(5){width:1180px;height:1180px;animation-delay:.72s}
+.pulse-ring:nth-child(6){width:1400px;height:1400px;animation-delay:.9s}
+
+@keyframes heartbeat {
+  0%   { opacity:0;   transform:translate(-50%,-50%) scale(.92) }
+  8%   { opacity:.55; transform:translate(-50%,-50%) scale(1) }
+  20%  { opacity:.3;  transform:translate(-50%,-50%) scale(1.03) }
+  30%  { opacity:.55; transform:translate(-50%,-50%) scale(1) }
+  42%  { opacity:.15; transform:translate(-50%,-50%) scale(1.04) }
+  100% { opacity:0;   transform:translate(-50%,-50%) scale(1.05) }
+}
+
+/* Heartbeat ECG line */
+.ecg-wrap{position:absolute;bottom:0;left:0;right:0;height:80px;pointer-events:none;z-index:1;opacity:.18}
+.ecg-line{width:200%;animation:ecgScroll 4s linear infinite}
+@keyframes ecgScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.hero-nav{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:36px 60px;border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;letter-spacing:8px;text-transform:uppercase;color:var(--s100)}
+.nav-cta{padding:11px 28px;border:1px solid rgba(200,190,170,.25);font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--s300);cursor:pointer;background:transparent;transition:all .3s;text-decoration:none}
+.nav-cta:hover{background:rgba(255,255,255,.06);border-color:rgba(200,190,170,.5);color:var(--s100)}
+
+.hero-body{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 40px;gap:28px}
+.hero-eyebrow{font-size:8px;font-weight:300;letter-spacing:6px;text-transform:uppercase;color:var(--s500);animation:fadeUp 1.2s ease .2s both}
+.hero-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,9vw,100px);font-weight:300;line-height:.95;color:var(--s50);letter-spacing:-1px;animation:fadeUp 1.2s ease .35s both}
+.hero-headline em{font-style:italic;color:var(--s400)}
+.hero-rule{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--s500),transparent);animation:fadeUp 1.2s ease .5s both}
+.hero-subhead{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.5vw,27px);font-weight:300;font-style:italic;color:var(--s300);max-width:580px;line-height:1.6;animation:fadeUp 1.2s ease .6s both}
+.hero-caption{font-size:10px;font-weight:300;letter-spacing:2px;color:var(--s500);max-width:500px;line-height:2;animation:fadeUp 1.2s ease .72s both}
+.hero-ctas{display:flex;gap:16px;align-items:center;animation:fadeUp 1.2s ease .88s both;flex-wrap:wrap;justify-content:center}
+.cta-primary{padding:16px 48px;background:var(--s50);color:var(--s900);text-decoration:none;font-size:8px;font-weight:400;letter-spacing:5px;text-transform:uppercase;transition:all .4s}
+.cta-primary:hover{background:var(--s200);transform:translateY(-2px)}
+.cta-ghost{padding:16px 32px;border:1px solid rgba(200,190,170,.25);color:var(--s300);text-decoration:none;font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;transition:all .3s}
+.cta-ghost:hover{border-color:rgba(200,190,170,.55);color:var(--s100)}
+
+.hero-foot{position:relative;z-index:3;display:flex;justify-content:center;gap:0;border-top:1px solid rgba(255,255,255,.07)}
+.hero-stat{flex:1;max-width:220px;text-align:center;padding:24px 20px;border-right:1px solid rgba(255,255,255,.07)}
+.hero-stat:last-child{border-right:none}
+.hs-num{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--s200);display:block}
+.hs-label{font-size:7px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--s500);display:block;margin-top:4px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── TICKER ─── */
+.ticker{background:var(--s800);padding:13px 0;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05)}
+.ticker-track{display:flex;width:max-content;animation:tick 32s linear infinite}
+.ticker-item{display:flex;align-items:center;gap:10px;padding:0 40px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.07)}
+.ticker-dot{width:3px;height:3px;border-radius:50%;background:var(--s500)}
+.ticker-text{font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:rgba(200,190,170,.4)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── THE PROBLEM ─── */
+.problem{background:var(--ww);border-bottom:1px solid var(--bd)}
+.problem-inner{max-width:1100px;margin:0 auto;padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.s-label{font-size:8px;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--tt);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.s-label::before{content:'';display:block;width:24px;height:1px;background:var(--s400)}
+.problem-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,54px);font-weight:300;line-height:1.1;color:var(--tp)}
+.problem-body{font-size:13px;font-weight:300;color:var(--ts);line-height:2.1;margin-bottom:24px}
+.problem-body strong{font-weight:400;color:var(--tp)}
+.pullquote{padding:28px 32px;border-left:1px solid var(--s400);background:var(--s100);margin-top:8px}
+.pullquote p{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300;color:var(--ts);line-height:1.7}
+
+/* ─── THE SYSTEM ─── */
+.system{background:var(--s900);border-bottom:1px solid rgba(255,255,255,.06)}
+.system-sticky-outer{display:grid;grid-template-columns:1fr 1fr;min-height:300vh}
+.system-sticky-left{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 80px;border-right:1px solid rgba(255,255,255,.07)}
+.system-eyebrow{font-size:8px;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--s500);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.system-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--s600)}
+.system-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.05;color:var(--s50);margin-bottom:36px}
+.system-subdesc{font-size:12px;font-weight:300;color:var(--s400);line-height:2;max-width:400px}
+.step-progress{display:flex;flex-direction:column;gap:0;margin-top:52px;max-width:360px}
+.step-pip{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:all .3s}
+.step-pip:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.step-pip-dot{width:6px;height:6px;border-radius:50%;border:1px solid var(--s600);background:transparent;transition:all .4s;flex-shrink:0}
+.step-pip.active .step-pip-dot{background:var(--s300);border-color:var(--s300);box-shadow:0 0 10px rgba(200,190,170,.35)}
+.step-pip-label{font-size:9px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--s600);transition:color .3s}
+.step-pip.active .step-pip-label{color:var(--s200)}
+
+.system-sticky-right{display:flex;flex-direction:column}
+.how-step-panel{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 60px;border-bottom:1px solid rgba(255,255,255,.06);opacity:.25;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.how-step-panel.visible{opacity:1;transform:translateY(0)}
+.how-step-panel:last-child{border-bottom:none}
+.step-num-big{font-family:'Cormorant Garamond',serif;font-size:96px;font-weight:300;color:rgba(200,190,170,.08);line-height:1;margin-bottom:-20px}
+.step-name-big{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,46px);font-weight:300;color:var(--s100);margin-bottom:20px;line-height:1.1}
+.step-rule-big{width:32px;height:1px;background:var(--s500);margin-bottom:24px}
+.step-desc-big{font-size:14px;font-weight:300;color:var(--s400);line-height:2;max-width:420px}
+.step-tag{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:8px 16px;border:1px solid rgba(200,190,170,.12);font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--s500)}
+.step-badge{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:10px 20px;border:1px solid rgba(200,190,170,.15);font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--s400);background:rgba(255,255,255,.03)}
+
+@media(max-width:900px){
+  .system-sticky-outer{grid-template-columns:1fr;min-height:auto}
+  .system-sticky-left{position:relative;height:auto;padding:72px 32px 48px}
+  .system-sticky-right{display:block}
+  .how-step-panel{height:auto;padding:60px 32px;opacity:1;transform:none}
+}
+
+/* ─── FOR YOUR MEMBERS ─── */
+.members{background:var(--s900);color:var(--s100)}
+.members-inner{max-width:1100px;margin:0 auto;padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.m-label{font-size:8px;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--s500);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.m-label::before{content:'';display:block;width:24px;height:1px;background:var(--s600)}
+.m-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.1;color:var(--s50);margin-bottom:28px}
+.m-body{font-size:13px;font-weight:300;color:var(--s300);line-height:2.1;margin-bottom:32px}
+.m-list{display:flex;flex-direction:column;gap:0}
+.m-item{display:flex;align-items:flex-start;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.m-item:first-child{border-top:1px solid rgba(255,255,255,.07)}
+.m-item-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--s500);min-width:24px;margin-top:1px}
+.m-item-text{font-size:12px;font-weight:300;color:var(--s300);line-height:1.8}
+.m-item-text strong{font-weight:400;color:var(--s100);display:block;font-size:11px;letter-spacing:1px;margin-bottom:3px}
+
+/* ─── SPACES ─── */
+.spaces{background:var(--s50)}
+.spaces-hdr{max-width:1100px;margin:0 auto;padding:100px 60px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;border-bottom:1px solid var(--bd)}
+.spaces-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.1;color:var(--tp);margin-top:16px}
+.spaces-desc{font-size:12px;font-weight:300;color:var(--ts);line-height:1.95;align-self:end}
+.rooms-outer{overflow-x:auto;overflow-y:hidden;position:relative;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rooms-outer::-webkit-scrollbar{display:none}
+.rooms-track{display:flex;gap:0}
+.room-card{flex:0 0 500px;scroll-snap-align:start;border-right:1px solid var(--bd)}
+.room-card:last-child{border-right:none}
+.room-img-wrap{position:relative;height:360px;overflow:hidden}
+.room-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;display:block}
+.room-card:hover .room-img-wrap img{transform:scale(1.04)}
+.room-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,14,.7) 0%,rgba(20,17,14,.1) 45%,transparent 100%)}
+.room-info{padding:28px 32px 36px;background:var(--ww)}
+.room-num{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;color:var(--tt);letter-spacing:3px;display:block;margin-bottom:6px}
+.room-dims{font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--s500);margin-bottom:7px}
+.room-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--tp);line-height:1.2;margin-bottom:8px}
+.room-dims-sub{font-size:9px;font-weight:300;letter-spacing:2px;color:var(--s500);margin-bottom:8px;line-height:1.7}
+.room-desc{font-size:11px;font-weight:300;color:var(--ts);line-height:1.9;font-style:italic}
+.rooms-controls{max-width:1100px;margin:0 auto;padding:32px 60px;display:flex;align-items:center;gap:24px;border-top:1px solid var(--bd)}
+.room-btn{width:44px;height:44px;border:1px solid var(--bds);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ts);transition:all .3s;flex-shrink:0}
+.room-btn:hover{background:var(--s800);color:var(--cream);border-color:var(--s800)}
+.rooms-progress-wrap{flex:1;height:1px;background:var(--bd)}
+.rooms-progress-fill{height:100%;background:var(--s600);width:12.5%;transition:width .4s}
+.rooms-counter{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--tt);letter-spacing:2px;min-width:48px;text-align:right}
+
+/* ─── WHAT YOU GET ─── */
+.offer{background:var(--s800);color:var(--s100)}
+.offer-inner{max-width:1100px;margin:0 auto;padding:120px 60px}
+.offer-hdr{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.offer-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.8vw,48px);font-weight:300;line-height:1.15;color:var(--s50)}
+.offer-desc{font-size:12px;font-weight:300;color:var(--s400);line-height:1.95;align-self:end}
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,.08)}
+.offer-item{padding:40px 32px;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:14px}
+.offer-item:last-child{border-right:none}
+
+.offer-name{font-size:10px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--s200)}
+.offer-rule{width:20px;height:1px;background:var(--s600)}
+.offer-desc-txt{font-size:12px;font-weight:300;color:var(--s400);line-height:1.85}
+
+/* ─── CLOSE ─── */
+.close{background:var(--s200);padding:140px 60px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.close-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,66px);font-weight:300;line-height:1.05;color:var(--tp);max-width:780px;letter-spacing:-.5px}
+.close-headline em{font-style:italic;color:var(--s600)}
+.close-sub{font-size:11px;font-weight:300;letter-spacing:1.5px;color:var(--ts);max-width:480px;line-height:2}
+.close-rule{width:40px;height:1px;background:var(--s400)}
+.close-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.close-cta-p{padding:18px 52px;background:var(--s800);color:var(--s100);text-decoration:none;font-size:8px;font-weight:400;letter-spacing:5px;text-transform:uppercase;transition:all .4s}
+.close-cta-p:hover{background:var(--s900);transform:translateY(-2px)}
+.close-cta-g{padding:18px 36px;border:1px solid var(--s600);color:var(--tp);text-decoration:none;font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;transition:all .3s}
+.close-cta-g:hover{background:var(--s800);color:var(--s100);border-color:var(--s800)}
+
+footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--s500)}
+.footer-right{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--s700)}
+
+@media(max-width:900px){
+  .hero-nav{padding:24px 32px}.hero-body{padding:48px 28px}.hero-foot{display:none}
+  .problem-inner,.members-inner,.fi-inner{grid-template-columns:1fr;gap:48px;padding:80px 32px}
+  .system-inner,.offer-inner{padding:80px 32px}
+  .system-hdr,.offer-hdr,.spaces-hdr{grid-template-columns:1fr;gap:24px;padding:72px 32px 40px}
+  .how-steps,.offer-grid{grid-template-columns:1fr}
+  .how-step,.offer-item{border-right:none;border-bottom:1px solid var(--bd)}
+  .room-card{flex:0 0 88vw}
+  .rooms-controls{padding:24px 32px}
+  .close{padding:100px 32px}
+  footer{padding:24px 32px}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="pulse-rings">
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+  </div>
+
+  <!-- ECG line SVG -->
+  <div class="ecg-wrap">
+    <svg class="ecg-line" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <polyline fill="none" stroke="rgba(200,190,160,0.9)" stroke-width="1.5"
+        points="0,40 120,40 160,40 175,8 185,72 195,12 205,40 280,40 400,40 440,40 455,8 465,72 475,12 485,40 560,40 680,40 720,40 735,8 745,72 755,12 765,40 840,40 960,40 1000,40 1015,8 1025,72 1035,12 1045,40 1120,40 1240,40 1280,40 1295,8 1305,72 1315,12 1325,40 1440,40"/>
+    </svg>
+    <svg class="ecg-line" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="position:absolute;left:50%;top:0">
+      <polyline fill="none" stroke="rgba(200,190,160,0.9)" stroke-width="1.5"
+        points="0,40 120,40 160,40 175,8 185,72 195,12 205,40 280,40 400,40 440,40 455,8 465,72 475,12 485,40 560,40 680,40 720,40 735,8 745,72 755,12 765,40 840,40 960,40 1000,40 1015,8 1025,72 1035,12 1045,40 1120,40 1240,40 1280,40 1295,8 1305,72 1315,12 1325,40 1440,40"/>
+    </svg>
+  </div>
+
+  <nav class="hero-nav">
+    <span class="nav-logo">Aera</span>
+    <a class="nav-cta" href="#contact">Request a Demo</a>
+  </nav>
+
+  <div class="hero-body">
+    <p class="hero-eyebrow">For Wellness Facilities &amp; Gym Operators</p>
+    <h1 class="hero-headline">A system designed to<br>guide <em>human evolution.</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-subhead">Your members are carrying more than their bodies can hold. Give them a facility that actually helps them regulate — and they will never leave.</p>
+    <p class="hero-caption">All they need is access to your rooms and a wearable. Aera does the rest.</p>
+    <div class="hero-ctas">
+      <a class="cta-primary" href="#contact">License the Frequency Index™</a>
+      <a class="cta-ghost" href="#spaces">See the Spaces →</a>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="hero-stat"><span class="hs-num">No 2</span><span class="hs-label">Sessions Ever the Same</span></div>
+    <div class="hero-stat"><span class="hs-num">Instant</span><span class="hs-label">Wearable Syncs on Arrival</span></div>
+    <div class="hero-stat"><span class="hs-num">5</span><span class="hs-label">Biometric Dimensions Scored</span></div>
+    <div class="hero-stat"><span class="hs-num">Zero</span><span class="hs-label">New Hardware Required</span></div>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Frequency Index™ Licensing</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Member Retention Platform</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Oura · Whoop · Apple Watch</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Biometric Adaptive Routing</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">White-Label Ready</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Install in Any Facility</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Frequency Index™ Licensing</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Member Retention Platform</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Oura · Whoop · Apple Watch</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Biometric Adaptive Routing</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">White-Label Ready</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Install in Any Facility</span></div>
+  </div>
+</div>
+
+<!-- ─── THE PROBLEM ─── -->
+<section class="problem">
+  <div class="problem-inner">
+    <div>
+      <p class="s-label">The Opportunity</p>
+      <h2 class="problem-headline">Your facility has the rooms. Your members have the wearables. The missing piece is intelligence.</h2>
+    </div>
+    <div>
+      <p class="problem-body">
+        Your members are showing up — but they don't know where to start. They wander. They do the same thing they always do. They plateau. They cancel.<br><br>
+        <strong>Not because your facility isn't good enough. Because no one has ever told their body where it actually needs to go.</strong><br><br>
+        Human nervous systems are more overloaded than at any point in history. Stress, poor sleep, chronic inflammation — your members are carrying it all through your front door. The facilities that will win the next decade aren't the ones with the best equipment. They're the ones that actually help people regulate.
+      </p>
+      <div class="pullquote"><p>Your best personal trainer doesn't just write a programme. They read the room. Aera gives every member that intelligence — automatically, every single visit, at scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="system">
+  <div class="system-sticky-outer">
+    <div class="system-sticky-left">
+      <p class="system-eyebrow">How It Works</p>
+      <h2 class="system-headline">Three steps.<br>Zero friction.<br>Infinite personalisation.</h2>
+      <p class="system-subdesc">No new hardware. No staff overhead. Your member walks in, their body tells the system where to send them, and your facility becomes something no competitor can replicate.</p>
+      <div class="step-progress">
+        <div class="step-pip active" data-step="0"><div class="step-pip-dot"></div><span class="step-pip-label">Member Arrives</span></div>
+        <div class="step-pip" data-step="1"><div class="step-pip-dot"></div><span class="step-pip-label">The Index Calculates</span></div>
+        <div class="step-pip" data-step="2"><div class="step-pip-dot"></div><span class="step-pip-label">The Facility Responds</span></div>
+      </div>
+    </div>
+    <div class="system-sticky-right">
+      <div class="how-step-panel visible" data-step="0">
+        <span class="step-num-big">01</span>
+        <h3 class="step-name-big">Member Arrives</h3>
+        <div class="step-rule-big"></div>
+        <p class="step-desc-big">They open the app. Their Oura, Whoop, or Apple Watch syncs in under ten seconds. No manual input. No questionnaire. Their body has already been tracking all night — the data is ready before they walk through the door.</p>
+        <span class="step-badge">↗ Wearable sync in under 10 seconds</span>
+      </div>
+      <div class="how-step-panel" data-step="1">
+        <span class="step-num-big">02</span>
+        <h3 class="step-name-big">The Index Calculates</h3>
+        <div class="step-rule-big"></div>
+        <p class="step-desc-big">The Frequency Index™ scores them across five dimensions — Regulation, Coherence, Vitality, Presence, Recovery — and generates a personalised route through your facility for that exact session, that exact day.</p>
+        <span class="step-badge">↗ 5 dimensions · scored in real time</span>
+      </div>
+      <div class="how-step-panel" data-step="2">
+        <span class="step-num-big">03</span>
+        <h3 class="step-name-big">The Facility Responds</h3>
+        <div class="step-rule-big"></div>
+        <p class="step-desc-big">They move through the spaces their state actually needs. The experience is different every visit. Every time they leave feeling like your facility understood them — because it did. That feeling is the retention driver no discount can replicate.</p>
+        <span class="step-badge">↗ No two sessions are ever the same</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOR YOUR MEMBERS ─── -->
+<section class="members">
+  <div class="members-inner">
+    <div>
+      <p class="m-label">For Your Members</p>
+      <h2 class="m-headline">All they need is your facility and a wearable they already own.</h2>
+      <p class="m-body">No new hardware. No complex onboarding. Your member connects their existing wearable in under 60 seconds — and from that moment, every visit to your facility is a personalised experience built around the real state of their nervous system.<br><br>And for your personal trainers? Aera tells them exactly where a client is before the session starts. No more guessing. No more wasted sessions. Just precise, state-led training that gets results — and keeps clients renewing.</p>
+    </div>
+    <div class="m-list">
+      <div class="m-item"><span class="m-item-num">01</span><div class="m-item-text"><strong>They already have the device</strong>Oura Ring, Whoop, or Apple Watch. Over 80 million wearables are active globally. Your members are already wearing the sensor. Aera just activates it.</div></div>
+      <div class="m-item"><span class="m-item-num">02</span><div class="m-item-text"><strong>Every visit feels different</strong>Because it is. Their state changes daily. The routing changes with it. There is no "same old session" with Aera — and that is exactly why they keep coming back.</div></div>
+      <div class="m-item"><span class="m-item-num">03</span><div class="m-item-text"><strong>They feel understood</strong>That's the retention driver no discount can replicate. When a member feels like your facility genuinely knows their body, they don't leave. They upgrade.</div></div>
+      <div class="m-item"><span class="m-item-num">04</span><div class="m-item-text"><strong>They bring their friends</strong>Aera is inherently social proof. "My gym literally reads my nervous system and tells me what to do" is not a thing people keep to themselves.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE SPACES ─── -->
+<section class="spaces" id="spaces">
+  <div class="spaces-hdr">
+    <div>
+      <p class="s-label">The Experiential Zones</p>
+      <h2 class="spaces-headline">Your rooms, activated<br>by intelligence.</h2>
+    </div>
+    <p class="spaces-desc">These are Aera's reference zones — the spaces the Frequency Index™ is designed to route members through. License the system and work with us to map it to your existing facility layout.</p>
+  </div>
+  <div class="rooms-outer" id="roomsOuter">
+    <div class="rooms-track" id="roomsTrack">
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/breath-temple.jpg" alt="Breath Temple" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">01</span>
+          <p class="room-dims">Regulation · Presence</p>
+          <h3 class="room-name">Breath Temple</h3>
+          <p class="room-dims-sub">Breathwork · Somatic Release · Nervous System Reset</p>
+          <p class="room-desc">Don't have a dedicated breathwork space? Aera delivers guided breathwork, sound healing, and meditations in-app — available in any quiet zone of your facility.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/crystal-dome.jpg" alt="Source Crystal Dome" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">02</span>
+          <p class="room-dims">Coherence · Vitality</p>
+          <h3 class="room-name">Source Crystal Dome</h3>
+          <p class="room-dims-sub">Sound Healing · Frequency Calibration · Deep Rest</p>
+          <p class="room-desc">Sound healing and resonance sessions available in-app. Members experience this anywhere in your facility — no specialist space required.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/float-pool.jpg" alt="Float Pool Sanctuary" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">03</span>
+          <p class="room-dims">Regulation · Recovery</p>
+          <h3 class="room-name">Float Pool Sanctuary</h3>
+          <p class="room-dims-sub">Flotation · Thermal Therapy · Deep Decompression</p>
+          <p class="room-desc">If you have a pool or thermal suite, Aera routes members here when their recovery score demands it. No float tank? In-app body scan protocols fill the gap.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/movement-studio.jpg" alt="Movement Studio" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">04</span>
+          <p class="room-dims">Vitality · Presence</p>
+          <h3 class="room-name">Movement Studio</h3>
+          <p class="room-dims-sub">Pilates · Yoga · Biometric-Guided Movement</p>
+          <p class="room-desc">Aera routes members to movement only when their state can actually absorb it — not when it will deplete them further.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/sauna.jpg" alt="Sauna Sanctuary" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">05</span>
+          <p class="room-dims">Vitality · Recovery</p>
+          <h3 class="room-name">Sauna Sanctuary</h3>
+          <p class="room-dims-sub">Infrared · Traditional Heat · Cellular Repair</p>
+          <p class="room-desc">Your sauna becomes a precision tool, not an afterthought. Aera times thermal sessions to the member's recovery window.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/cold-immersion.jpg" alt="Cold Immersion Room" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">06</span>
+          <p class="room-dims">Regulation · Vitality</p>
+          <h3 class="room-name">Cold Immersion Room</h3>
+          <p class="room-dims-sub">Cold Plunge · Contrast Therapy · Nervous System Activation</p>
+          <p class="room-desc">Aera protocols guide members through optimal cold exposure duration based on their real-time regulation score.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/red-light.jpg" alt="Red Light Suite" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">07</span>
+          <p class="room-dims">Coherence · Recovery</p>
+          <h3 class="room-name">Red Light Suite</h3>
+          <p class="room-dims-sub">Near-Infrared · Passive Recovery · Cellular Regeneration</p>
+          <p class="room-desc">No red light suite? In-app breathwork and meditation sequences are prescribed as an equivalent passive recovery protocol.</p>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img-wrap">
+          <img src="img/integration.jpg" alt="Integration Lounge" loading="lazy"/>
+          <div class="room-img-overlay"></div>
+        </div>
+        <div class="room-info">
+          <span class="room-num">08</span>
+          <p class="room-dims">All Dimensions</p>
+          <h3 class="room-name">Integration Lounge</h3>
+          <p class="room-dims-sub">Rest · Reflection · Integration</p>
+          <p class="room-desc">Every Aera session closes with integration time. No dedicated lounge needed — a quiet corner and the in-app closing sequence is enough.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rooms-controls">
+    <button class="room-btn" id="roomsPrev">←</button>
+    <div class="rooms-progress-wrap"><div class="rooms-progress-fill" id="roomsProgress"></div></div>
+    <span class="rooms-counter" id="roomsCounter">01 / 08</span>
+    <button class="room-btn" id="roomsNext">→</button>
+  </div>
+</section>
+
+<!-- ─── WHAT YOU GET ─── -->
+<section class="offer">
+  <div class="offer-inner">
+    <div class="offer-hdr">
+      <div>
+        <p class="s-label" style="color:var(--s500)">The License Includes</p>
+        <h2 class="offer-headline">Everything you need to run the Frequency Index™ inside your facility.</h2>
+      </div>
+      <p class="offer-desc">White-label ready. Branded to your facility. We handle the technology. You own the member relationship.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-item">
+        
+        <span class="offer-name">Frequency Index™ Platform</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">The full scoring engine, wearable integrations, and adaptive routing algorithm — white-labelled to your brand.</p>
+      </div>
+      <div class="offer-item">
+        
+        <span class="offer-name">Branded Member App</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">Your name. Your colours. Your zones. Members see your facility — powered by Aera behind the scenes.</p>
+      </div>
+      <div class="offer-item">
+        
+        <span class="offer-name">Zone Mapping &amp; Onboarding</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">We map the Frequency Index™ routing to your existing floor plan. No renovation required to get started.</p>
+      </div>
+      <div class="offer-item">
+        
+        <span class="offer-name">Member Analytics Dashboard</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">See which zones your members use most, when they visit, and how their Frequency Index™ trends over time.</p>
+      </div>
+      <div class="offer-item">
+        
+        <span class="offer-name">Staff Training Programme</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">Your team learns the language of the Frequency Index™. They guide members toward spaces intuitively.</p>
+      </div>
+      <div class="offer-item">
+        
+        <span class="offer-name">Ongoing Development Access</span>
+        <div class="offer-rule"></div>
+        <p class="offer-desc-txt">As new wearables, features, and research land — your license updates with them. You're never running on yesterday's system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CLOSE ─── -->
+<section class="close" id="contact">
+  <h2 class="close-headline">Your facility could be the first in your market to offer this. <em>That window won't stay open.</em></h2>
+  <div class="close-rule"></div>
+  <p class="close-sub">We're partnering with a small number of facilities in 2026. If you're building something worth being remembered for — let's talk.</p>
+  <div class="close-ctas">
+    <a class="close-cta-p" href="/cdn-cgi/l/email-protection#cba3aea7a7a48ba6b2a5aebcaaaeb9aae5a8a4a6">Request a Licensing Call →</a>
+    <a class="close-cta-g" href="/app.html">See the Member Experience</a>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-logo">Aera</p>
+  <p class="footer-right">Frequency Index™ · Licensed Platform · 2026</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Sticky scroll — How It Works
+const panels = document.querySelectorAll('.how-step-panel');
+const pips   = document.querySelectorAll('.step-pip');
+
+const stepObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const step = entry.target.dataset.step;
+    panels.forEach(p => p.classList.remove('visible'));
+    pips.forEach(p => p.classList.remove('active'));
+    entry.target.classList.add('visible');
+    const activePip = document.querySelector('.step-pip[data-step="' + step + '"]');
+    if (activePip) activePip.classList.add('active');
+  });
+}, { root: null, rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+
+panels.forEach(p => stepObs.observe(p));
+if (panels.length > 0) panels[0].classList.add('visible');
+
+// Rooms carousel — scroll snap
+const roomsOuter = document.getElementById('roomsOuter');
+const roomCards  = roomsOuter ? roomsOuter.querySelectorAll('.room-card') : [];
+const roomTotal  = roomCards.length;
+let roomCurrent  = 0;
+
+function roomUpdateUI() {
+  const prog = document.getElementById('roomsProgress');
+  const ctr  = document.getElementById('roomsCounter');
+  if (prog) prog.style.width = ((roomCurrent + 1) / roomTotal * 100) + '%';
+  if (ctr)  ctr.textContent  = String(roomCurrent + 1).padStart(2, '0') + ' / ' + String(roomTotal).padStart(2, '0');
+}
+
+function roomGoTo(i) {
+  roomCurrent = Math.max(0, Math.min(roomTotal - 1, i));
+  if (roomCards[roomCurrent]) {
+    roomCards[roomCurrent].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+  roomUpdateUI();
+}
+
+var nextBtn = document.getElementById('roomsNext');
+var prevBtn = document.getElementById('roomsPrev');
+if (nextBtn) nextBtn.onclick = function() { roomGoTo(roomCurrent + 1); };
+if (prevBtn) prevBtn.onclick = function() { roomGoTo(roomCurrent - 1); };
+
+if (roomsOuter) {
+  roomsOuter.addEventListener('scroll', function() {
+    var cardW = roomCards[0] ? roomCards[0].offsetWidth : 500;
+    if (cardW < 10) cardW = 500;
+    roomCurrent = Math.min(roomTotal - 1, Math.round(roomsOuter.scrollLeft / cardW));
+    roomUpdateUI();
+  }, { passive: true });
+}
+
+roomUpdateUI();
+</script>
+</body>
+</html>
