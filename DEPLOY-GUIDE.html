@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aera — Deploy Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #f5f0ea;
+  --warm: #c8a882;
+  --warm-dark: #a07850;
+  --earth: #6b4f35;
+  --dark: #1a1008;
+  --text: #1e1610;
+  --text-soft: #7a6555;
+  --white: #fefcfa;
+  --border: #e0d4c0;
+  --code-bg: #1e1a16;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',sans-serif; background:var(--sand); color:var(--text); line-height:1.7; }
+
+header {
+  background: var(--dark);
+  padding: 48px 40px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.h-logo { font-family:'Cormorant Garamond',serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:rgba(200,168,130,0.4); }
+.h-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,5vw,48px); font-weight:300; color:#f0e8dc; line-height:1.1; }
+.h-sub { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(200,168,130,0.5); }
+
+.body { max-width:780px; margin:0 auto; padding:52px 40px; display:flex; flex-direction:column; gap:48px; }
+
+.step-block { display:flex; flex-direction:column; gap:16px; }
+
+.step-header { display:flex; align-items:center; gap:16px; }
+.step-circle {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--earth); color:#f0e8dc;
+  font-size:13px; font-weight:400;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.step-title { font-size:16px; font-weight:500; color:var(--earth); letter-spacing:1px; }
+.step-desc { font-size:12px; font-weight:300; color:var(--text-soft); line-height:1.8; padding-left:52px; }
+
+.callout {
+  border-left:3px solid var(--warm);
+  padding:14px 18px;
+  background:rgba(200,168,130,0.08);
+  border-radius:0 4px 4px 0;
+  margin-left:52px;
+}
+.callout p { font-size:12px; font-weight:300; color:var(--text); line-height:1.7; }
+.callout strong { font-weight:500; color:var(--earth); }
+.callout a { color:var(--warm-dark); }
+
+.callout.green { border-left-color:#7ab87a; background:rgba(122,184,122,0.08); }
+.callout.orange { border-left-color:#d4955a; background:rgba(212,149,90,0.08); }
+
+code {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  background:rgba(200,168,130,0.15);
+  padding:2px 7px;
+  border-radius:3px;
+  color:var(--earth);
+}
+
+.code-block {
+  background:var(--code-bg);
+  border-radius:5px;
+  overflow:hidden;
+  margin-left:52px;
+}
+.code-top {
+  padding:8px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(200,168,130,0.4);
+}
+pre {
+  padding:16px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  line-height:1.7;
+  color:#e8ddd0;
+  overflow-x:auto;
+}
+
+.file-tree {
+  margin-left:52px;
+  background:var(--code-bg);
+  border-radius:5px;
+  padding:18px 20px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  line-height:2;
+  color:#e8ddd0;
+}
+.file-tree .folder { color:#c8a882; }
+.file-tree .file   { color:#c3e88d; padding-left:20px; }
+.file-tree .note   { color:#546e7a; font-size:10px; padding-left:20px; }
+
+.divider { border:none; border-top:1px solid var(--border); }
+
+footer {
+  background:var(--dark);
+  padding:32px 40px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+}
+footer p { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(200,168,130,0.25); }
+
+@media(max-width:600px){
+  .body { padding:36px 20px; }
+  .step-desc, .callout, .code-block, .file-tree { margin-left:0; }
+  header { padding:36px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="h-logo">Aera · Deploy Guide</p>
+  <h1 class="h-title">Go Live in<br>3 Steps</h1>
+  <p class="h-sub">GitHub → Vercel → Your Domain · Free</p>
+</header>
+
+<div class="body">
+
+  <!-- WHAT YOU HAVE -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">✦</div>
+      <p class="step-title">Your file package</p>
+    </div>
+    <p class="step-desc">You have 4 files. These go into one folder on your computer — call it <code>aera-app</code>.</p>
+    <div class="file-tree">
+      <span class="folder">aera-app/</span><br>
+      <span class="file">index.html</span><span class="note">  ← landing page</span><br>
+      <span class="file">app.html</span><span class="note">    ← Frequency Index™ app</span><br>
+      <span class="file">manifest.json</span><span class="note"> ← makes it installable</span><br>
+      <span class="file">sw.js</span><span class="note">        ← offline support</span><br>
+    </div>
+    <div class="callout orange">
+      <p><strong>App icon:</strong> You'll also need two PNG icons — 192×192px and 512×512px — saved as <code>icons/icon-192.png</code> and <code>icons/icon-512.png</code> inside the folder. Use Canva or any image tool to make a simple square logo on a dark background.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 1: GITHUB -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">1</div>
+      <p class="step-title">Put your files on GitHub</p>
+    </div>
+    <p class="step-desc">GitHub stores your code and connects to Vercel for deployment. It's free.</p>
+
+    <div class="callout">
+      <p>
+        1. Go to <a href="https://github.com" target="_blank"><strong>github.com</strong></a> and create a free account if you don't have one.<br><br>
+        2. Click the <strong>+</strong> icon → <strong>New repository</strong><br><br>
+        3. Name it <code>aera-app</code> → set to <strong>Public</strong> → click <strong>Create repository</strong><br><br>
+        4. On the next screen, click <strong>uploading an existing file</strong><br><br>
+        5. Drag and drop all your files (<code>index.html</code>, <code>app.html</code>, <code>manifest.json</code>, <code>sw.js</code>, and the <code>icons</code> folder) into the upload area.<br><br>
+        6. Scroll down → click <strong>Commit changes</strong>
+      </p>
+    </div>
+
+    <div class="callout green">
+      <p><strong>✓ Done when:</strong> You can see all your files listed on your GitHub repository page.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 2: VERCEL -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">2</div>
+      <p class="step-title">Deploy to Vercel (free hosting)</p>
+    </div>
+    <p class="step-desc">Vercel turns your GitHub files into a live website instantly. No configuration needed — it just works with plain HTML files.</p>
+
+    <div class="callout">
+      <p>
+        1. Go to <a href="https://vercel.com" target="_blank"><strong>vercel.com</strong></a> → click <strong>Sign Up</strong> → sign in with your GitHub account.<br><br>
+        2. Click <strong>Add New → Project</strong><br><br>
+        3. Find your <code>aera-app</code> repository and click <strong>Import</strong><br><br>
+        4. Leave all settings as default — Vercel will auto-detect it's a static site.<br><br>
+        5. Click <strong>Deploy</strong><br><br>
+        6. Wait ~30 seconds. Vercel gives you a free URL like <code>aera-app.vercel.app</code>
+      </p>
+    </div>
+
+    <div class="callout green">
+      <p><strong>✓ Done when:</strong> You see a green "Congratulations" screen and can open your live URL.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 3: DOMAIN -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">3</div>
+      <p class="step-title">Connect your domain</p>
+    </div>
+    <p class="step-desc">You already have a domain. This connects it to your Vercel deployment so members go to your real URL.</p>
+
+    <div class="callout">
+      <p>
+        1. In your Vercel project, go to <strong>Settings → Domains</strong><br><br>
+        2. Type in your domain (e.g. <code>aeraelevation.com</code>) → click <strong>Add</strong><br><br>
+        3. Vercel will show you two DNS records to add. Copy them.<br><br>
+        4. Go to wherever you registered your domain (GoDaddy, Namecheap, Squarespace, etc.) → find <strong>DNS Settings</strong><br><br>
+        5. Add the records Vercel gave you — usually one <strong>A record</strong> and one <strong>CNAME record</strong><br><br>
+        6. Wait up to 24 hours (usually under 1 hour) for DNS to update<br><br>
+        7. Vercel auto-installs a free SSL certificate — your site will be <code>https://</code> automatically
+      </p>
+    </div>
+
+    <div class="callout green">
+      <p><strong>✓ Done when:</strong> Visiting your domain loads the Aera landing page.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PWA INSTALL -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">✦</div>
+      <p class="step-title">How members "install" the app</p>
+    </div>
+    <p class="step-desc">Once your site is live, members can add it to their home screen — it looks and feels like a downloaded app with no App Store needed.</p>
+
+    <div class="callout">
+      <p>
+        <strong>iPhone:</strong> Open the site in Safari → tap the Share button (box with arrow) → scroll down → tap <strong>Add to Home Screen</strong> → tap Add.<br><br>
+        <strong>Android:</strong> Open in Chrome → tap the three-dot menu → tap <strong>Add to Home screen</strong> → tap Add.<br><br>
+        The app will appear on their home screen with the Aera icon, open full-screen with no browser bar, and work offline.
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- UPDATES -->
+  <div class="step-block">
+    <div class="step-header">
+      <div class="step-circle">✦</div>
+      <p class="step-title">How to update the app going forward</p>
+    </div>
+    <p class="step-desc">Every time you want to change something, just replace the file on GitHub. Vercel auto-redeploys in under 30 seconds.</p>
+    <div class="callout">
+      <p>Go to your GitHub repo → click the file you want to update → click the pencil ✏️ icon to edit → make changes → click <strong>Commit changes</strong>. Done. Vercel detects the change and redeploys automatically.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Aera · A New Aera of Being Human</p>
+  <p>Deploy Guide · 2026</p>
+</footer>
+
+</body>
+</html>

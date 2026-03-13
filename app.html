@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AERA — Frequency Index™</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #f0e8dc;
+  --sand-deep: #e0d4c0;
+  --warm: #c8a882;
+  --warm-dark: #a07850;
+  --earth: #6b4f35;
+  --text: #2a1f14;
+  --text-soft: #7a6555;
+  --white: #faf7f3;
+  --dark: #1a1008;
+  --dark-mid: #2d1f0f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--sand);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  animation: fadeIn 0.7s ease forwards;
+}
+.screen.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════
+   INVESTOR INTRO
+════════════════════════════════ */
+#screen-investor {
+  background: var(--dark);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.investor-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200,168,130,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(160,120,80,0.10) 0%, transparent 70%);
+}
+
+.investor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,168,130,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,168,130,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.investor-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 32px;
+  text-align: center;
+  max-width: 680px;
+}
+
+.inv-eyebrow {
+  font-size: 9px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.5);
+  animation: invFade 1s ease 0.3s both;
+}
+
+.inv-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 8vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--sand);
+  animation: invFade 1s ease 0.6s both;
+}
+
+.inv-headline em {
+  color: var(--warm);
+  font-style: normal;
+  border-bottom: 1px solid rgba(200,168,130,0.4);
+}
+
+.inv-sub {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.6);
+  animation: invFade 1s ease 0.9s both;
+}
+
+.inv-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: invFade 1s ease 1.2s both;
+}
+
+.inv-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.inv-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--warm);
+}
+
+.inv-stat-label {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.5);
+}
+
+.inv-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(200,168,130,0.2);
+}
+
+.inv-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(240,232,220,0.7);
+  max-width: 480px;
+  line-height: 1.6;
+  animation: invFade 1s ease 1.5s both;
+}
+
+.inv-orb {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e8d5be, #c8a882, #6b4f35);
+  box-shadow: 0 0 60px rgba(200,168,130,0.3), 0 0 120px rgba(200,168,130,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: invFade 1s ease 1.8s both, orbPulse 4s ease-in-out 2s infinite;
+  flex-direction: column;
+  gap: 4px;
+}
+.inv-orb:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 80px rgba(200,168,130,0.5);
+}
+.inv-orb span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  font-weight: 400;
+}
+
+@keyframes invFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(200,168,130,0.3); }
+  50%       { box-shadow: 0 0 80px rgba(200,168,130,0.6); }
+}
+
+.inv-skip {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.3);
+  cursor: pointer;
+  transition: color 0.2s;
+  animation: invFade 1s ease 2.2s both;
+}
+.inv-skip:hover { color: rgba(200,168,130,0.7); }
+
+/* ════════════════════════════════
+   LOGIN
+════════════════════════════════ */
+#screen-login {
+  background: var(--white);
+  gap: 28px;
+}
+
+.logo-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 6px;
+  color: var(--warm-dark);
+  text-transform: uppercase;
+}
+
+.screen-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 300;
+  color: var(--earth);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.input-field label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.input-field input {
+  padding: 14px 16px;
+  border: 1px solid var(--sand-deep);
+  background: var(--white);
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.input-field input:focus { border-color: var(--warm); }
+
+.btn-primary {
+  padding: 16px 48px;
+  background: var(--earth);
+  color: var(--sand);
+  border: none;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+.btn-primary:hover {
+  background: var(--warm-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(107,79,53,0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--sand-deep);
+  color: var(--text-soft);
+  padding: 14px 32px;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+.btn-ghost:hover { border-color: var(--warm); color: var(--warm-dark); }
+
+.auth-switch {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--text-soft);
+  cursor: pointer;
+}
+.auth-switch span {
+  color: var(--warm-dark);
+  text-decoration: underline;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--warm-dark);
+}
+
+/* ════════════════════════════════
+   DASHBOARD
+════════════════════════════════ */
+#screen-dashboard {
+  background: var(--white);
+  justify-content: flex-start;
+  padding: 0;
+  gap: 0;
+}
+
+.dash-header {
+  background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 100%);
+  padding: 32px 28px 28px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dash-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dash-welcome .greet {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.6);
+}
+.dash-welcome .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--sand);
+}
+
+.dash-nav-btn {
+  background: rgba(200,168,130,0.12);
+  border: 1px solid rgba(200,168,130,0.2);
+  color: rgba(200,168,130,0.8);
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dash-nav-btn:hover { background: rgba(200,168,130,0.2); }
+
+.dash-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dash-section-title {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--warm-dark);
+  margin-bottom: 14px;
+}
+
+/* History cards */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f5efe7, #ede3d6);
+  border: 1px solid var(--sand-deep);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.history-card:hover { border-color: var(--warm); transform: translateX(4px); }
+
+.hist-score {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--earth);
+  min-width: 52px;
+}
+
+.hist-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hist-band {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-dark);
+}
+.hist-date {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--text-soft);
+}
+.hist-dims {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--text-soft);
+}
+
+.hist-arrow {
+  color: var(--sand-deep);
+  font-size: 18px;
+}
+
+.empty-history {
+  text-align: center;
+  padding: 32px;
+  border: 1px dashed var(--sand-deep);
+  border-radius: 4px;
+}
+.empty-history p {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text-soft);
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+
+/* Trend mini chart */
+.trend-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 60px;
+  padding: 0 4px;
+}
+.trend-bar {
+  flex: 1;
+  background: linear-gradient(to top, var(--warm-dark), var(--warm));
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: height 0.6s ease;
+  position: relative;
+}
+.trend-bar-label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════
+   CONNECT WEARABLE
+════════════════════════════════ */
+#screen-connect {
+  background: var(--white);
+  gap: 24px;
+}
+
+.wearable-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.wearable-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--sand-deep);
+  background: var(--white);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  width: 100%;
+}
+.wearable-btn:hover, .wearable-btn.selected {
+  border-color: var(--warm);
+  background: rgba(200,168,130,0.07);
+}
+.wearable-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.divider {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  position: relative;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: var(--sand-deep);
+}
+.divider::before { left: 0; }
+.divider::after  { right: 0; }
+
+.manual-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* ════════════════════════════════
+   SCAN
+════════════════════════════════ */
+#screen-scan {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-mid) 50%, var(--dark) 100%);
+  gap: 40px;
+  text-align: center;
+}
+
+.scan-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.5);
+}
+
+.scan-orb-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.scan-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200,168,130,0.2);
+  animation: scanExpand 2s ease-out infinite;
+}
+.scan-ring:nth-child(1) { width:100%; height:100%; top:0; left:0; animation-delay:0s; }
+.scan-ring:nth-child(2) { width:130%; height:130%; top:-15%; left:-15%; animation-delay:0.5s; }
+.scan-ring:nth-child(3) { width:160%; height:160%; top:-30%; left:-30%; animation-delay:1s; }
+@keyframes scanExpand {
+  0%   { opacity: 0.6; transform: scale(0.85); }
+  100% { opacity: 0;   transform: scale(1.1); }
+}
+.scan-core {
+  position: absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #c8a882, #6b4f35);
+  box-shadow: 0 0 50px rgba(200,168,130,0.4);
+  animation: coreGlow 2s ease-in-out infinite alternate;
+}
+@keyframes coreGlow {
+  from { box-shadow: 0 0 30px rgba(200,168,130,0.3); }
+  to   { box-shadow: 0 0 70px rgba(200,168,130,0.7); }
+}
+.scan-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,232,220,0.9);
+  min-height: 32px;
+  transition: opacity 0.4s;
+}
+.scan-progress-bar {
+  width: 200px;
+  height: 1px;
+  background: rgba(200,168,130,0.2);
+  overflow: hidden;
+}
+.scan-progress-fill {
+  height: 100%;
+  background: var(--warm);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ════════════════════════════════
+   RESULT
+════════════════════════════════ */
+#screen-result {
+  background: var(--white);
+  gap: 0;
+  padding: 0;
+  align-items: stretch;
+  overflow-y: auto;
+  justify-content: flex-start;
+}
+
+.result-header {
+  background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 100%);
+  padding: 48px 32px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.result-header .logo-mark { color: rgba(200,168,130,0.5); }
+
+.fi-score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.fi-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(200,168,130,0.6);
+}
+.fi-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 18vw, 110px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--sand);
+  opacity: 0;
+  animation: scoreReveal 1s ease 0.4s forwards;
+}
+@keyframes scoreReveal {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.fi-band {
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--warm);
+  font-weight: 400;
+}
+.fi-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,232,220,0.75);
+  max-width: 340px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.result-body {
+  padding: 32px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-heading {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--warm-dark);
+  margin-bottom: 14px;
+}
+
+/* Dimensions */
+.dimensions { display: flex; flex-direction: column; gap: 14px; }
+.dim-row { display: flex; flex-direction: column; gap: 6px; }
+.dim-meta { display: flex; justify-content: space-between; align-items: baseline; }
+.dim-name { font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--earth); }
+.dim-score-label { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--warm-dark); }
+.dim-note { font-size: 10px; font-weight: 300; letter-spacing: 1px; color: var(--text-soft); }
+.dim-bar { height: 2px; background: var(--sand-deep); border-radius: 1px; overflow: hidden; }
+.dim-bar-fill { height: 100%; background: linear-gradient(90deg, var(--warm-dark), var(--warm)); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); border-radius: 1px; }
+
+/* Journey */
+.journey-card {
+  background: linear-gradient(135deg, #f5efe7, #ede3d6);
+  border: 1px solid var(--sand-deep);
+  border-radius: 6px;
+  padding: 24px;
+}
+.journey-steps { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.journey-step { display: flex; align-items: center; gap: 14px; }
+.step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--earth);
+  color: var(--sand);
+  font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-name { font-size: 11px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: var(--earth); }
+.step-tag {
+  margin-left: auto;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-dark);
+  background: rgba(200,168,130,0.15);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Insight */
+.insight-block { border-left: 2px solid var(--warm); padding-left: 20px; }
+.insight-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--earth); line-height: 1.65; }
+
+.cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.cta-row .btn-primary, .cta-row .btn-ghost { width: auto; flex: 1; }
+
+.result-footer { padding: 20px 28px; text-align: center; border-top: 1px solid var(--sand-deep); }
+.footer-copy { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-soft); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     SCREEN 0: INVESTOR INTRO
+══════════════════════════════ -->
+<div class="screen active" id="screen-investor">
+  <div class="investor-bg"></div>
+  <div class="investor-grid"></div>
+  <div class="investor-content">
+    <p class="inv-eyebrow">Aera · Adaptive Environment for Regenerative Alignment · 2026</p>
+    <h1 class="inv-headline">
+      A New A<em>era</em> of<br>Being Human
+    </h1>
+    <p class="inv-sub">16,000 sq ft · 14 experiential zones · Top 1% globally</p>
+    <div class="inv-stats">
+      <div class="inv-stat">
+        <span class="inv-stat-num">16K</span>
+        <span class="inv-stat-label">Sq Ft</span>
+      </div>
+      <div class="inv-divider"></div>
+      <div class="inv-stat">
+        <span class="inv-stat-num">14</span>
+        <span class="inv-stat-label">Experiential Zones</span>
+      </div>
+      <div class="inv-divider"></div>
+      <div class="inv-stat">
+        <span class="inv-stat-num">5</span>
+        <span class="inv-stat-label">FI Dimensions</span>
+      </div>
+      <div class="inv-divider"></div>
+      <div class="inv-stat">
+        <span class="inv-stat-num">$7M</span>
+        <span class="inv-stat-label">Capex</span>
+      </div>
+    </div>
+    <p class="inv-tagline">"Your building is the instrument.<br>The Frequency Index™ is how it plays people back into coherence."</p>
+    <div class="inv-orb" onclick="goTo('screen-login')">
+      <span>Enter</span>
+    </div>
+    <p class="inv-skip" onclick="goTo('screen-login')">skip intro ↓</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 1: LOGIN / REGISTER
+══════════════════════════════ -->
+<div class="screen" id="screen-login">
+  <p class="logo-mark">Aera Elevation Ltd.</p>
+  <h2 class="screen-title" id="auth-title">Member Login</h2>
+  <p style="font-size:11px;font-weight:300;color:var(--text-soft);letter-spacing:1px;text-align:center;max-width:280px;line-height:1.7;">
+    Access your Frequency Index™ and journey history.
+  </p>
+  <div class="auth-form">
+    <div class="input-field" id="name-field" style="display:none;">
+      <label>Full Name</label>
+      <input type="text" id="in-name" placeholder="Your name">
+    </div>
+    <div class="input-field">
+      <label>Email</label>
+      <input type="email" id="in-email" placeholder="you@example.com">
+    </div>
+    <div class="input-field">
+      <label>Password</label>
+      <input type="password" id="in-password" placeholder="••••••••">
+    </div>
+    <button class="btn-primary" onclick="handleAuth()">Continue</button>
+    <button class="btn-ghost" onclick="goTo('screen-connect');initGuest()">Continue as Guest</button>
+  </div>
+  <p class="auth-switch" id="auth-switch-text">
+    New to AERA? <span onclick="toggleAuthMode()">Create account</span>
+  </p>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 2: DASHBOARD
+══════════════════════════════ -->
+<div class="screen" id="screen-dashboard">
+  <div class="dash-header">
+    <div class="dash-welcome">
+      <span class="greet">Welcome back</span>
+      <span class="name" id="dash-name">—</span>
+    </div>
+    <button class="dash-nav-btn" onclick="goTo('screen-connect')">+ New Assessment</button>
+  </div>
+
+  <div class="dash-body">
+
+    <!-- Trend -->
+    <div id="trend-section" style="display:none;">
+      <p class="dash-section-title">Frequency Trajectory</p>
+      <div class="trend-chart" id="trend-chart"></div>
+      <div style="margin-top:24px;"></div>
+    </div>
+
+    <!-- History -->
+    <div>
+      <p class="dash-section-title">Session History</p>
+      <div class="history-list" id="history-list">
+        <div class="empty-history">
+          <p>No sessions yet.<br>Start your first assessment to see your Frequency Trajectory.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="goTo('screen-connect')">Begin Today's Assessment</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 3: CONNECT WEARABLE
+══════════════════════════════ -->
+<div class="screen" id="screen-connect">
+  <p class="section-label">Frequency Assessment</p>
+  <h2 class="screen-title">Connect your<br>wearable</h2>
+  <p style="font-size:11px;font-weight:300;letter-spacing:1px;color:var(--text-soft);text-align:center;max-width:300px;line-height:1.7;">
+    We'll read your biometric data to calculate your Frequency Index™ for today.
+  </p>
+
+  <div class="wearable-options">
+    <button class="wearable-btn" onclick="selectWearable(this,'whoop')">
+      <div class="wearable-icon">⌚</div>
+      <span>Whoop</span>
+    </button>
+    <button class="wearable-btn" onclick="selectWearable(this,'oura')">
+      <div class="wearable-icon">💍</div>
+      <span>Oura Ring</span>
+    </button>
+    <button class="wearable-btn" onclick="selectWearable(this,'apple')">
+      <div class="wearable-icon">🍎</div>
+      <span>Apple Watch</span>
+    </button>
+  </div>
+
+  <div class="divider">or enter manually</div>
+
+  <div class="manual-input-grid">
+    <div class="input-field">
+      <label>HRV (ms)</label>
+      <input type="number" id="in-hrv" placeholder="e.g. 58" min="10" max="150">
+    </div>
+    <div class="input-field">
+      <label>Resting HR</label>
+      <input type="number" id="in-hr" placeholder="e.g. 54" min="40" max="100">
+    </div>
+    <div class="input-field">
+      <label>Sleep Score</label>
+      <input type="number" id="in-sleep" placeholder="0–100" min="0" max="100">
+    </div>
+    <div class="input-field">
+      <label>Recovery %</label>
+      <input type="number" id="in-recovery" placeholder="0–100" min="0" max="100">
+    </div>
+    <div class="input-field">
+      <label>SpO2 %</label>
+      <input type="number" id="in-spo2" placeholder="e.g. 98" min="85" max="100">
+    </div>
+    <div class="input-field">
+      <label>Strain / Load</label>
+      <input type="number" id="in-strain" placeholder="0–21" min="0" max="21">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%;max-width:360px;">
+    <button class="btn-primary" onclick="startScan()">Generate My Frequency Index™</button>
+    <button class="btn-ghost" onclick="useDemoData()">Use Demo Data</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 4: SCAN
+══════════════════════════════ -->
+<div class="screen" id="screen-scan">
+  <p class="scan-logo">Aera · Frequency Index™</p>
+  <div class="scan-orb-container">
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-core"></div>
+  </div>
+  <p class="scan-text" id="scan-text">Stabilizing your field…</p>
+  <div class="scan-progress-bar">
+    <div class="scan-progress-fill" id="scan-progress"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 5: RESULT
+══════════════════════════════ -->
+<div class="screen" id="screen-result">
+  <div class="result-header">
+    <p class="logo-mark">Aera Elevation Ltd.</p>
+    <div class="fi-score-display">
+      <p class="fi-label">Frequency Index™</p>
+      <p class="fi-number" id="fi-score">—</p>
+      <p class="fi-band" id="fi-band">—</p>
+    </div>
+    <p class="fi-tagline" id="fi-tagline">—</p>
+  </div>
+
+  <div class="result-body">
+    <div>
+      <p class="section-heading">Dimension Breakdown</p>
+      <div class="dimensions" id="dimensions-list"></div>
+    </div>
+    <div>
+      <p class="section-heading">Today's Recommended Journey</p>
+      <div class="journey-card">
+        <div class="journey-steps" id="journey-steps"></div>
+      </div>
+    </div>
+    <div class="insight-block">
+      <p class="insight-text" id="daily-insight">—</p>
+    </div>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="saveSessionAndDash()">Save to My Journey</button>
+      <button class="btn-ghost" onclick="goTo('screen-connect')">Reassess</button>
+    </div>
+  </div>
+
+  <div class="result-footer">
+    <p class="footer-copy">Let your body lead. We'll guide the frequency.</p>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════
+// STATE
+// ════════════════════════════════
+let currentUser = null;
+let isRegisterMode = false;
+let scores = {};
+let currentResult = null;
+
+// In-memory store (persists for session)
+const users = {};
+const sessions = {};
+
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ════════════════════════════════
+// AUTH
+// ════════════════════════════════
+function toggleAuthMode() {
+  isRegisterMode = !isRegisterMode;
+  document.getElementById('auth-title').textContent = isRegisterMode ? 'Create Account' : 'Member Login';
+  document.getElementById('name-field').style.display = isRegisterMode ? 'flex' : 'none';
+  document.getElementById('auth-switch-text').innerHTML = isRegisterMode
+    ? 'Already a member? <span onclick="toggleAuthMode()">Sign in</span>'
+    : 'New to AERA? <span onclick="toggleAuthMode()">Create account</span>';
+}
+
+function handleAuth() {
+  const email    = document.getElementById('in-email').value.trim();
+  const password = document.getElementById('in-password').value;
+  const name     = document.getElementById('in-name').value.trim();
+
+  if (!email || !password) { alert('Please enter your email and password.'); return; }
+
+  if (isRegisterMode) {
+    if (!name) { alert('Please enter your name.'); return; }
+    users[email] = { name, password };
+    sessions[email] = [];
+    currentUser = { email, name };
+  } else {
+    if (users[email] && users[email].password === password) {
+      currentUser = { email, name: users[email].name };
+    } else if (!users[email]) {
+      // Auto-create for demo
+      const demoName = email.split('@')[0];
+      users[email] = { name: demoName, password };
+      sessions[email] = [];
+      currentUser = { email, name: demoName };
+    } else {
+      alert('Incorrect password.'); return;
+    }
+  }
+
+  loadDashboard();
+  goTo('screen-dashboard');
+}
+
+function initGuest() {
+  currentUser = { email: 'guest', name: 'Guest' };
+  sessions['guest'] = sessions['guest'] || [];
+}
+
+// ════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════
+function loadDashboard() {
+  if (!currentUser) return;
+  document.getElementById('dash-name').textContent = currentUser.name;
+
+  const userSessions = sessions[currentUser.email] || [];
+  const historyList  = document.getElementById('history-list');
+  const trendSection = document.getElementById('trend-section');
+  const trendChart   = document.getElementById('trend-chart');
+
+  if (userSessions.length === 0) {
+    historyList.innerHTML = `
+      <div class="empty-history">
+        <p>No sessions yet.<br>Start your first assessment to see your Frequency Trajectory.</p>
+      </div>`;
+    trendSection.style.display = 'none';
+    return;
+  }
+
+  // Trend bars
+  trendSection.style.display = 'block';
+  trendChart.innerHTML = userSessions.slice(-7).map(s => `
+    <div class="trend-bar" style="height:${s.score * 0.6}%">
+      <span class="trend-bar-label">${s.score}</span>
+    </div>`).join('');
+
+  // History cards
+  historyList.innerHTML = userSessions.slice().reverse().map((s, i) => `
+    <div class="history-card">
+      <span class="hist-score">${s.score}</span>
+      <div class="hist-info">
+        <span class="hist-band">${s.band}</span>
+        <span class="hist-date">${s.date}</span>
+        <span class="hist-dims">R:${s.dims.regulation} · C:${s.dims.coherence} · V:${s.dims.vitality} · P:${s.dims.presence} · Rec:${s.dims.recovery}</span>
+      </div>
+      <span class="hist-arrow">›</span>
+    </div>`).join('');
+}
+
+function saveSessionAndDash() {
+  if (!currentUser || !currentResult) { goTo('screen-dashboard'); return; }
+  const email = currentUser.email;
+  if (!sessions[email]) sessions[email] = [];
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+
+  sessions[email].push({
+    score: currentResult.score,
+    band:  currentResult.band,
+    date:  dateStr,
+    dims:  { ...scores }
+  });
+
+  loadDashboard();
+  goTo('screen-dashboard');
+}
+
+// ════════════════════════════════
+// WEARABLE + INPUTS
+// ════════════════════════════════
+function selectWearable(btn, name) {
+  document.querySelectorAll('.wearable-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  useDemoData();
+}
+
+function useDemoData() {
+  document.getElementById('in-hrv').value      = Math.floor(Math.random()*60)+30;
+  document.getElementById('in-hr').value       = Math.floor(Math.random()*20)+48;
+  document.getElementById('in-sleep').value    = Math.floor(Math.random()*40)+50;
+  document.getElementById('in-recovery').value = Math.floor(Math.random()*60)+30;
+  document.getElementById('in-spo2').value     = Math.floor(Math.random()*4)+95;
+  document.getElementById('in-strain').value   = (Math.random()*14+2).toFixed(1);
+}
+
+function startScan() {
+  const hrv      = parseFloat(document.getElementById('in-hrv').value)      || 50;
+  const hr       = parseFloat(document.getElementById('in-hr').value)       || 60;
+  const sleep    = parseFloat(document.getElementById('in-sleep').value)    || 65;
+  const recovery = parseFloat(document.getElementById('in-recovery').value) || 55;
+  const spo2     = parseFloat(document.getElementById('in-spo2').value)     || 97;
+  const strain   = parseFloat(document.getElementById('in-strain').value)   || 8;
+
+  scores.regulation = calcRegulation(hrv, hr);
+  scores.coherence  = calcCoherence(hrv, hr, recovery);
+  scores.vitality   = calcVitality(spo2, strain, recovery);
+  scores.presence   = calcPresence(sleep, hrv, strain);
+  scores.recovery   = calcRecovery(sleep, recovery, hr);
+
+  goTo('screen-scan');
+  runScanAnimation();
+}
+
+// ════════════════════════════════
+// SCORING
+// ════════════════════════════════
+function norm(val, min, max) {
+  return Math.max(0, Math.min(100, ((val - min) / (max - min)) * 100));
+}
+function calcRegulation(hrv, hr) {
+  return Math.round(norm(hrv,15,100)*0.65 + norm(100-hr,40,65)*0.35);
+}
+function calcCoherence(hrv, hr, recovery) {
+  return Math.round(norm(hrv,15,100)*0.45 + norm(recovery,10,100)*0.35 + norm(100-hr,40,65)*0.2);
+}
+function calcVitality(spo2, strain, recovery) {
+  return Math.round(norm(spo2,92,100)*0.35 + norm(21-strain,0,18)*0.35 + norm(recovery,10,100)*0.3);
+}
+function calcPresence(sleep, hrv, strain) {
+  return Math.round(norm(sleep,20,100)*0.45 + norm(hrv,15,100)*0.35 + norm(21-strain,0,18)*0.2);
+}
+function calcRecovery(sleep, recovery, hr) {
+  return Math.round(norm(sleep,20,100)*0.4 + norm(recovery,10,100)*0.45 + norm(100-hr,40,65)*0.15);
+}
+
+// ════════════════════════════════
+// SCAN ANIMATION
+// ════════════════════════════════
+const scanMessages = [
+  "Stabilizing your field…",
+  "Reading your rhythms…",
+  "Mapping coherence…",
+  "Generating your Frequency Index™…"
+];
+
+function runScanAnimation() {
+  const textEl = document.getElementById('scan-text');
+  const progEl = document.getElementById('scan-progress');
+  progEl.style.width = '0%';
+  let msgIdx = 0, progress = 0;
+
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx+1) % scanMessages.length;
+    textEl.style.opacity = '0';
+    setTimeout(() => { textEl.textContent = scanMessages[msgIdx]; textEl.style.opacity = '1'; }, 300);
+  }, 1100);
+
+  const progInterval = setInterval(() => {
+    progress += 2;
+    progEl.style.width = progress + '%';
+    if (progress >= 100) {
+      clearInterval(progInterval);
+      clearInterval(msgInterval);
+      setTimeout(() => { buildResult(); goTo('screen-result'); animateDimBars(); }, 400);
+    }
+  }, 90);
+}
+
+// ════════════════════════════════
+// ROUTING ENGINE — with Pilates + Yoga
+// ════════════════════════════════
+
+const ZONES = {
+  // Therapeutic spaces
+  breath_temple:      { name: 'Breath Temple',           tag: 'Breathwork' },
+  somatic_release:    { name: 'Somatic Release Room',    tag: 'Somatic' },
+  float_pool:         { name: 'Float Pool Sanctuary',    tag: 'Float' },
+  red_light:          { name: 'Red Light Suite',         tag: 'Recovery' },
+  crystal_dome:       { name: 'Source Crystal Dome',     tag: 'Sound' },
+  biofeedback:        { name: 'Biofeedback Room',        tag: 'Neural' },
+  sauna:              { name: 'Sauna Sanctuary',         tag: 'Heat' },
+  cold_immersion:     { name: 'Cold Immersion Room',     tag: 'Contrast' },
+  integration_lounge: { name: 'Integration Lounge',      tag: 'Rest' },
+  // Movement
+  pilates_reformer:   { name: 'Pilates Reformer Studio', tag: 'Movement' },
+  yoga:               { name: 'Yoga Studio',             tag: 'Movement' },
+};
+
+const ROUTING = {
+  regulation: [
+    ZONES.breath_temple, ZONES.somatic_release, ZONES.float_pool, ZONES.red_light, ZONES.crystal_dome
+  ],
+  coherence: [
+    ZONES.breath_temple, ZONES.crystal_dome, ZONES.biofeedback, ZONES.yoga, ZONES.somatic_release
+  ],
+  vitality: [
+    ZONES.red_light, ZONES.sauna, ZONES.breath_temple, ZONES.pilates_reformer, ZONES.cold_immersion
+  ],
+  presence: [
+    ZONES.biofeedback, ZONES.breath_temple, ZONES.crystal_dome, ZONES.yoga, ZONES.float_pool
+  ],
+  recovery: [
+    ZONES.float_pool, ZONES.red_light, ZONES.crystal_dome, ZONES.sauna, ZONES.integration_lounge
+  ],
+  radiant: [
+    ZONES.breath_temple, ZONES.crystal_dome, ZONES.cold_immersion, ZONES.pilates_reformer, ZONES.yoga
+  ]
+};
+
+// Pilates/Yoga injection rules
+function injectMovement(band, lowestDim, journey) {
+  // Always add movement for Elevated/Radiant
+  if (band === 'elevated' || band === 'radiant') {
+    if (!journey.find(j => j.name.includes('Pilates'))) journey.push(ZONES.pilates_reformer);
+    if (!journey.find(j => j.name.includes('Yoga'))) journey.push(ZONES.yoga);
+  }
+  // Coherence + Presence benefit from Yoga
+  if ((lowestDim === 'coherence' || lowestDim === 'presence') && !journey.find(j => j.name.includes('Yoga'))) {
+    journey.splice(2, 0, ZONES.yoga);
+  }
+  // Vitality benefits from Pilates
+  if (lowestDim === 'vitality' && !journey.find(j => j.name.includes('Pilates'))) {
+    journey.splice(2, 0, ZONES.pilates_reformer);
+  }
+  return journey;
+}
+
+function getJourney(scores, band) {
+  if (band === 'radiant') {
+    return ROUTING.radiant.slice(0, 5);
+  }
+  const sorted    = Object.entries(scores).sort((a,b) => a[1]-b[1]);
+  const lowest    = sorted[0][0];
+  const secondLow = sorted[1][0];
+
+  let journey = ROUTING[lowest].slice(0, 3);
+  // Blend in second-lowest if very different
+  if (sorted[1][1] < 55 && ROUTING[secondLow][0] && !journey.find(j => j.name === ROUTING[secondLow][0].name)) {
+    journey.push(ROUTING[secondLow][0]);
+  }
+  journey = injectMovement(band, lowest, journey);
+  return journey.slice(0, 5);
+}
+
+// ════════════════════════════════
+// RESULT BUILD
+// ════════════════════════════════
+const bandConfig = {
+  dense:        { label: 'Dense',        tagline: 'Your system is asking for grounding and nervous system support. We\'ll begin by helping your body feel safe and open.' },
+  transitional: { label: 'Transitional', tagline: 'You\'re in motion. Your system is shifting toward coherence. Today\'s journey is built to support that transition.' },
+  elevated:     { label: 'Elevated',     tagline: 'Your system is open and ready for expansion. We\'ve curated a journey to deepen coherence and replenish recovery.' },
+  radiant:      { label: 'Radiant',      tagline: 'You\'re in an expansive state. Your system is ready for deeper, more advanced work.' }
+};
+
+const dimMeta = {
+  regulation: { label: 'Regulation', notes: { high:'Calm + grounded',        mid:'Stabilizing',     low:'Needs support' }},
+  coherence:  { label: 'Coherence',  notes: { high:'Synchronized',           mid:'Ready to align',  low:'Out of sync' }},
+  vitality:   { label: 'Vitality',   notes: { high:'Accessible energy',      mid:'Building charge', low:'Depleted' }},
+  presence:   { label: 'Presence',   notes: { high:'Focused + receptive',    mid:'Settling in',     low:'Scattered' }},
+  recovery:   { label: 'Recovery',   notes: { high:'Fully restored',         mid:'Recovering',      low:'Needs replenishment' }}
+};
+
+const insights = {
+  dense:        "Your system craves stillness and safety today. Move slowly, breathe deeply, and allow the environment to hold you.",
+  transitional: "Your system craves rhythm and warmth today. Try softer exhales and slow movement to support coherence.",
+  elevated:     "Your system is open and fluid. Use this state to explore deeper practices and let expansiveness guide you.",
+  radiant:      "You are operating at full signal. This is the state for mastery, breakthroughs, and high-frequency expansion."
+};
+
+function buildResult() {
+  const avg = Math.round(Object.values(scores).reduce((a,b)=>a+b,0)/5);
+  let band;
+  if      (avg <= 40) band = 'dense';
+  else if (avg <= 60) band = 'transitional';
+  else if (avg <= 80) band = 'elevated';
+  else                band = 'radiant';
+
+  currentResult = { score: avg, band: bandConfig[band].label };
+
+  document.getElementById('fi-score').textContent  = avg;
+  document.getElementById('fi-band').textContent   = bandConfig[band].label.toUpperCase();
+  document.getElementById('fi-tagline').textContent = bandConfig[band].tagline;
+
+  // Dimensions
+  const dimList = document.getElementById('dimensions-list');
+  dimList.innerHTML = '';
+  ['regulation','coherence','vitality','presence','recovery'].forEach(key => {
+    const s    = scores[key];
+    const m    = dimMeta[key];
+    const nKey = s >= 70 ? 'high' : s >= 50 ? 'mid' : 'low';
+    dimList.innerHTML += `
+      <div class="dim-row">
+        <div class="dim-meta">
+          <div>
+            <span class="dim-name">${m.label}</span>
+            <span class="dim-note"> — ${m.notes[nKey]}</span>
+          </div>
+          <span class="dim-score-label">${s}</span>
+        </div>
+        <div class="dim-bar">
+          <div class="dim-bar-fill" data-width="${s}" style="width:0%"></div>
+        </div>
+      </div>`;
+  });
+
+  // Journey
+  const journey = getJourney(scores, band);
+  document.getElementById('journey-steps').innerHTML = journey.map((z, i) => `
+    <div class="journey-step">
+      <div class="step-num">${i+1}</div>
+      <span class="step-name">${z.name}</span>
+      <span class="step-tag">${z.tag}</span>
+    </div>`).join('');
+
+  document.getElementById('daily-insight').textContent = `"${insights[band]}"`;
+}
+
+function animateDimBars() {
+  setTimeout(() => {
+    document.querySelectorAll('.dim-bar-fill').forEach(el => {
+      el.style.width = el.dataset.width + '%';
+    });
+  }, 300);
+}
+</script>
+</body>
+</html>
