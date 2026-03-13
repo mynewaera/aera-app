@@ -114,6 +114,7 @@ body{font-family:'Jost',sans-serif;background:var(--s50);color:var(--tp);overflo
 .step-rule-big{width:32px;height:1px;background:var(--s500);margin-bottom:24px}
 .step-desc-big{font-size:14px;font-weight:300;color:var(--s400);line-height:2;max-width:420px}
 .step-tag{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:8px 16px;border:1px solid rgba(200,190,170,.12);font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--s500)}
+.step-badge{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:10px 20px;border:1px solid rgba(200,190,170,.15);font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--s400);background:rgba(255,255,255,.03)}
 
 @media(max-width:900px){
   .system-sticky-outer{grid-template-columns:1fr;min-height:auto}
@@ -172,7 +173,7 @@ body{font-family:'Jost',sans-serif;background:var(--s50);color:var(--tp);overflo
 .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,.08)}
 .offer-item{padding:40px 32px;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:14px}
 .offer-item:last-child{border-right:none}
-.offer-icon{font-size:22px;opacity:.7}
+
 .offer-name{font-size:10px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--s200)}
 .offer-rule{width:20px;height:1px;background:var(--s600)}
 .offer-desc-txt{font-size:12px;font-weight:300;color:var(--s400);line-height:1.85}
@@ -288,7 +289,7 @@ footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:spa
         <strong>Not because your facility isn't good enough. Because no one has ever told their body where it actually needs to go.</strong><br><br>
         Human nervous systems are more overloaded than at any point in history. Stress, poor sleep, chronic inflammation — your members are carrying it all through your front door. The facilities that will win the next decade aren't the ones with the best equipment. They're the ones that actually help people regulate.
       </p>
-      <div class="pullquote"><p>The gym membership of the future isn't a locker and a treadmill. It's an environment that reads you — and responds.</p></div>
+      <div class="pullquote"><p>Your best personal trainer doesn't just write a programme. They read the room. Aera gives every member that intelligence — automatically, every single visit, at scale.</p></div>
     </div>
   </div>
 </section>
@@ -312,21 +313,21 @@ footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:spa
         <h3 class="step-name-big">Member Arrives</h3>
         <div class="step-rule-big"></div>
         <p class="step-desc-big">They open the app. Their Oura, Whoop, or Apple Watch syncs in under ten seconds. No manual input. No questionnaire. Their body has already been tracking all night — the data is ready before they walk through the door.</p>
-        <span class="step-tag">↗ Wearable sync in &lt;10 seconds</span>
+        <span class="step-badge">↗ Wearable sync in under 10 seconds</span>
       </div>
       <div class="how-step-panel" data-step="1">
         <span class="step-num-big">02</span>
         <h3 class="step-name-big">The Index Calculates</h3>
         <div class="step-rule-big"></div>
         <p class="step-desc-big">The Frequency Index™ scores them across five dimensions — Regulation, Coherence, Vitality, Presence, Recovery — and generates a personalised route through your facility for that exact session, that exact day.</p>
-        <span class="step-tag">↗ 5 dimensions · scored in real time</span>
+        <span class="step-badge">↗ 5 dimensions · scored in real time</span>
       </div>
       <div class="how-step-panel" data-step="2">
         <span class="step-num-big">03</span>
         <h3 class="step-name-big">The Facility Responds</h3>
         <div class="step-rule-big"></div>
         <p class="step-desc-big">They move through the spaces their state actually needs. The experience is different every visit. Every time they leave feeling like your facility understood them — because it did. That feeling is the retention driver no discount can replicate.</p>
-        <span class="step-tag">↗ No two sessions are ever the same</span>
+        <span class="step-badge">↗ No two sessions are ever the same</span>
       </div>
     </div>
   </div>
@@ -338,7 +339,7 @@ footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:spa
     <div>
       <p class="m-label">For Your Members</p>
       <h2 class="m-headline">All they need is your facility and a wearable they already own.</h2>
-      <p class="m-body">No new hardware. No complex onboarding. Your member connects their existing wearable in under 60 seconds — and from that moment, every visit to your facility is a personalised experience built around the real state of their nervous system.</p>
+      <p class="m-body">No new hardware. No complex onboarding. Your member connects their existing wearable in under 60 seconds — and from that moment, every visit to your facility is a personalised experience built around the real state of their nervous system.<br><br>And for your personal trainers? Aera tells them exactly where a client is before the session starts. No more guessing. No more wasted sessions. Just precise, state-led training that gets results — and keeps clients renewing.</p>
     </div>
     <div class="m-list">
       <div class="m-item"><span class="m-item-num">01</span><div class="m-item-text"><strong>They already have the device</strong>Oura Ring, Whoop, or Apple Watch. Over 80 million wearables are active globally. Your members are already wearing the sensor. Aera just activates it.</div></div>
@@ -486,37 +487,37 @@ footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:spa
     </div>
     <div class="offer-grid">
       <div class="offer-item">
-        <div class="offer-icon">◎</div>
+        
         <span class="offer-name">Frequency Index™ Platform</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">The full scoring engine, wearable integrations, and adaptive routing algorithm — white-labelled to your brand.</p>
       </div>
       <div class="offer-item">
-        <div class="offer-icon">⬡</div>
+        
         <span class="offer-name">Branded Member App</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">Your name. Your colours. Your zones. Members see your facility — powered by Aera behind the scenes.</p>
       </div>
       <div class="offer-item">
-        <div class="offer-icon">◈</div>
+        
         <span class="offer-name">Zone Mapping &amp; Onboarding</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">We map the Frequency Index™ routing to your existing floor plan. No renovation required to get started.</p>
       </div>
       <div class="offer-item">
-        <div class="offer-icon">◷</div>
+        
         <span class="offer-name">Member Analytics Dashboard</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">See which zones your members use most, when they visit, and how their Frequency Index™ trends over time.</p>
       </div>
       <div class="offer-item">
-        <div class="offer-icon">◌</div>
+        
         <span class="offer-name">Staff Training Programme</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">Your team learns the language of the Frequency Index™. They guide members toward spaces intuitively.</p>
       </div>
       <div class="offer-item">
-        <div class="offer-icon">◉</div>
+        
         <span class="offer-name">Ongoing Development Access</span>
         <div class="offer-rule"></div>
         <p class="offer-desc-txt">As new wearables, features, and research land — your license updates with them. You're never running on yesterday's system.</p>
@@ -546,20 +547,27 @@ footer{background:var(--s900);padding:32px 60px;display:flex;justify-content:spa
 const panels = document.querySelectorAll('.how-step-panel');
 const pips   = document.querySelectorAll('.step-pip');
 
+// Use rootMargin to trigger when panel centre crosses viewport centre
 const stepObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
     const step = entry.target.dataset.step;
-    if (entry.isIntersecting) {
-      panels.forEach(p => p.classList.remove('visible'));
-      pips.forEach(p => p.classList.remove('active'));
-      entry.target.classList.add('visible');
-      const activePip = document.querySelector(`.step-pip[data-step="${step}"]`);
-      if (activePip) activePip.classList.add('active');
-    }
+    panels.forEach(p => p.classList.remove('visible'));
+    pips.forEach(p => p.classList.remove('active'));
+    entry.target.classList.add('visible');
+    const activePip = document.querySelector(`.step-pip[data-step="${step}"]`);
+    if (activePip) activePip.classList.add('active');
   });
-}, { threshold: 0.55 });
+}, {
+  root: null,
+  rootMargin: '-35% 0px -35% 0px',
+  threshold: 0
+});
 
 panels.forEach(p => stepObs.observe(p));
+
+// Ensure first panel is always visible on load
+if (panels.length > 0) panels[0].classList.add('visible');
 
 // ── Rooms carousel ──
 const track = document.getElementById('roomsTrack');
